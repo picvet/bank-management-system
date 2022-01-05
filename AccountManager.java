@@ -18,13 +18,4 @@ public class AccountManager {
 		listAccount.add(account);
 	}
 
-	public String printDetails(String username, ArrayList<Account> listAccount) {
-		for (Account f : listAccount)
-			if (f.getCustomer().getCustomer_username().equals(username))
-				return "Username :" + f.getCustomer().getCustomer_username() + "ID: "
-						+ f.getCustomer().getCustomer_id();
-
-		return null;
-	}
-
 }

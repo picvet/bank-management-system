@@ -1,0 +1,36 @@
+CREATE TABLE `users` (
+`full_name` VARCHAR(50),
+`gender` VARCHAR(10) DEFAULT 'Male',
+`id_number` VARCHAR(7),
+`password` VARCHAR(30),
+`username` VARCHAR(40) DEFAULT '',
+`phone_number` VARCHAR(13),
+`email` VARCHAR(50),
+`street_number` INT(6),
+`street_name` VARCHAR(50),
+`zip_code` VARCHAR(5),
+PRIMARY KEY (`username`)
+);
+
+CREATE TABLE `account` (
+`account_id` INT(4) NOT NULL ,
+`type` VARCHAR(20),
+`account_number` VARCHAR(5),
+`balance` DECIMAL(7,2),
+`description` VARCHAR(100),
+`interest_rate` DECIMAL(7,2),
+`username_user` VARCHAR(40),
+PRIMARY KEY (`account_number`)
+);
+
+CREATE TABLE statement(
+
+date VARCHAR(60),
+
+account_number VARCHAR(5),
+
+amount DECIMAL(7, 2),
+
+transaction VARCHAR(30)
+
+);

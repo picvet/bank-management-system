@@ -2,20 +2,17 @@ package databases;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
+import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
-import javax.swing.JOptionPane;
-
-import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
+import javax.swing.JTextArea;
 
 import system.Account;
 import system.AccountException;
@@ -329,6 +326,47 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public void showStatement(JTextArea area) {
+    	String sql = "SELECT date, account_number, amount, transaction FROM statement WHERE account_number=? AND amount>10";
+    	try (     			
+    	Statement statement = this.connection.createStatement(); 
+    			){
+
+    		String acc = this.accountNum(this.getName());
+    		PreparedStatement pst = this.connection.prepareStatement(sql);
+    		pst.setString(1, acc);
+    		ResultSet resultSet = pst.executeQuery();
+    		
+    		java.sql.ResultSetMetaData metaData = resultSet.getMetaData();
+    		
+    		int numCol = metaData.getColumnCount();
+    		
+    		String a = "", b = "";
+    		StringBuilder aa = new StringBuilder(a);
+    		StringBuilder bb = new StringBuilder(b);
+    		
+    		
+    		for(int i = 1; i <= numCol; i++)
+    			aa.append( String.format("%-8s\t", metaData.getColumnName(i))); 
+    		aa.append("\n");
+    		
+    		while(resultSet.next()) {
+    			for(int i = 1; i <= numCol; i++)
+    				bb.append(String .format("%-8s\t", resultSet.getObject(i)));
+    			bb.append("\n");
+    		}
+    		
+    		String appended = "Statement for account number " + acc + "\n\n";
+    		
+    		appended = appended + aa + bb;
+    		area.setText(appended);
+    		
+    	}catch(SQLException io) {
+    		io.printStackTrace();
+    	}
+    	
     }
 
 }

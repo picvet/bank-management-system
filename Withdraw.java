@@ -85,9 +85,9 @@ public class Withdraw extends JFrame {
 					boolean with = databaseConnection.withdrawal(Double.parseDouble(amount.getText()), databaseConnection.getName());
 					
 					if(with)
-						JOptionPane.showMessageDialog(null, "Successful");
+						JOptionPane.showMessageDialog(null, "R" + amount.getText() + " withdrawn.");
 					else
-						JOptionPane.showMessageDialog(null, "Not Successful");
+						JOptionPane.showMessageDialog(null, "Withdrawal not successful!");
 				} catch (NumberFormatException | SQLException e) { 
 					e.printStackTrace();
 				}
@@ -99,7 +99,7 @@ public class Withdraw extends JFrame {
 
 	private void goToMenu() {
 		this.dispose();
-		new Transfer().setVisible(true);
+		new Menu().setVisible(true);
 		
 	}
 }

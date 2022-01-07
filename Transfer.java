@@ -45,7 +45,7 @@ public class Transfer extends JFrame {
 	 */
 	public Transfer() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 841, 413);
+		setBounds(100, 100, 841, 360);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -61,24 +61,16 @@ public class Transfer extends JFrame {
 		afdasfafasdfasf.setBounds(109, 40, 246, 35);
 		contentPane.add(afdasfafasdfasf);
 		
-		JLabel adfasfa = new JLabel("Type");
-		adfasfa.setBounds(109, 133, 246, 35);
-		contentPane.add(adfasfa);
-		
 		JLabel sdfadf = new JLabel("Amount");
-		sdfadf.setBounds(109, 222, 246, 35);
+		sdfadf.setBounds(109, 145, 246, 35);
 		contentPane.add(sdfadf);
 		
 		JTextArea number = new JTextArea();
 		number.setBounds(358, 40, 406, 35);
 		contentPane.add(number);
 		
-		JTextArea type = new JTextArea();
-		type.setBounds(358, 133, 406, 35);
-		contentPane.add(type);
-		
 		JTextArea amount = new JTextArea();
-		amount.setBounds(358, 222, 406, 35);
+		amount.setBounds(358, 145, 406, 35);
 		contentPane.add(amount);
 		
 		JButton btnMenu = new JButton("Menu");
@@ -87,7 +79,7 @@ public class Transfer extends JFrame {
 				goToMenu();
 			}
 		});
-		btnMenu.setBounds(193, 289, 188, 35);
+		btnMenu.setBounds(197, 234, 188, 35);
 		contentPane.add(btnMenu);
 		
 		JButton btnSend = new JButton("Send");
@@ -120,7 +112,7 @@ public class Transfer extends JFrame {
 				
 			}
 		});
-		btnSend.setBounds(482, 289, 188, 35);
+		btnSend.setBounds(476, 234, 188, 35);
 		contentPane.add(btnSend);
 	}
 

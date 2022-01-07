@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -55,6 +56,12 @@ public class Menu extends JFrame {
 		contentPane.add(lblOptions);
 		
 		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, "Thank you for using our banking application.");
+				System.exit(0);;
+			}
+		});
 		btnExit.setBounds(633, 335, 220, 38);
 		contentPane.add(btnExit);
 		
@@ -77,12 +84,18 @@ public class Menu extends JFrame {
 		contentPane.add(send);
 		
 		statement = new JButton("Statement");
+		statement.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				goToStatement();
+			}
+		});
 		statement.setBounds(180, 206, 264, 38);
 		contentPane.add(statement);
 		
 		balance = new JButton("Withdraw");
 		balance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				goToWithdrawal();
 			}
 		});
 		balance.setBounds(589, 206, 264, 38);
@@ -97,5 +110,15 @@ public class Menu extends JFrame {
 	private void goToTransfer() {
 		this.dispose();
 		new Transfer().setVisible(true);
+	}
+
+	private void goToWithdrawal() {
+		this.dispose();
+		new Withdraw().setVisible(true);
+	}
+
+	private void goToStatement() {
+		this.dispose();
+		new Statement().setVisible(true);
 	}
 }

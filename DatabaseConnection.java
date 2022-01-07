@@ -2,20 +2,17 @@ package databases;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
+import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
-import javax.swing.JOptionPane;
-
-import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
+import javax.swing.JTextArea;
 
 import system.Account;
 import system.AccountException;
@@ -329,6 +326,37 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public void showStatement(JTextArea area) {
+    	String sql = "SELECT date, account_number, amount, transaction FROM statement";
+    	try ( 
+    	Statement statement = this.connection.createStatement();
+    	ResultSet resultSet = this.getResults(sql);
+    			){
+    		java.sql.ResultSetMetaData metaData = resultSet.getMetaData();
+    		
+    		int numCol = metaData.getColumnCount();
+    		String acc = this.accountNum(this.getName());
+    		
+    		String appe = "Statement for account number " + acc + "%n%n"; 
+    		StringBuilder sb = new StringBuilder(appe);
+    		for(int i = 1; i <= numCol; i++)
+    			sb.append("%-8s\t" + metaData.getColumnName(i));
+    		sb.append("\n");
+    		
+    		while(resultSet.next()) {
+    			for(int i = 1; i <= numCol; i++)
+    				sb.append("%-8s\t" + resultSet.getObject(i));
+    			sb.append("\n");
+    		}
+    		
+    		area.setText(appe);
+    		
+    	}catch(SQLException io) {
+    		io.printStackTrace();
+    	}
+    	
     }
 
 }
